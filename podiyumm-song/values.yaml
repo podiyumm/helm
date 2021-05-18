@@ -1,0 +1,137 @@
+# Default values for podiyumm-song.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: podiyumm/podiyumm-song
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 0.0.1-SNAPSHOT
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: podiyumm-song.local
+      paths:
+      - path: /
+        backend:
+          serviceName: podiyumm-song.local
+          servicePort: 8080
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+deploy:
+  ## Application properties file for configuring the Quarkus app
+  applicationProperties:
+    ## Determines if application properties should be created in a configmap and mounted to the Quarkus container
+    enabled: true
+    ## Location to mount the properties file
+    mountPath: /deployments/config/
+    ## Application properties file contents
+    properties: |-
+      ## Properties go here
+      # quarkus.mongodb.connection-string: mongodb://podiyumm-song-mongodb:27017/podiyumm-song?socketTimeoutMS=1000&connectTimeoutMS=1000&serverSelectionTimeoutMS=1000
+      quarkus.mongodb.connection-string: mongodb://podiyumm-song-mongodb:27017/podiyumm-song?authSource=admin&socketTimeoutMS=1000&connectTimeoutMS=1000&serverSelectionTimeoutMS=1000
+      quarkus.mongodb.credentials.auth-mechanism: PLAIN
+      #  to overcome: com.mongodb.MongoCommandException: Command failed with error 13 (Unauthorized): 'not authorized on podiyumm-song to execute com
+      #mand { collMod: "DATABASECHANGELOGLOCK", validator: { $jsonSchema: { bsonType: "object", description: "Database Lock Collection"  "code": 13, "codeName": "Unauthorized"}
+      # for proper solution, see needed permissions: https://docs.mongodb.com/manual/reference/command/collMod/#access-control
+      # quarkus.mongodb.credentials.username: podiyumm-song
+      # quarkus.mongodb.credentials.password: podiyumm-song
+      quarkus.mongodb.credentials.username: root
+      quarkus.mongodb.credentials.password: mongodb
+
+  ## Freeform Liveness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
+  livenessProbe:
+    httpGet:
+      path: /q/health/live
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  ## If you don't want a livenessProbe, override like this in your values file
+  # livenessProbe: ''
+
+
+  ## Freeform Readiness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
+  readinessProbe:
+    httpGet:
+      path: /q/health/ready
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  ## If you don't want a readinessProbe, override like this in your values file
+  # readinessProve: ''
+
+  ports:
+    targetPort: 8080
+
+# dependent one
+mongodb:
+  auth:
+    rootPassword: mongodb
+    username: podiyumm-song
+    password: podiyumm-song
+    database: podiyumm-song
+
