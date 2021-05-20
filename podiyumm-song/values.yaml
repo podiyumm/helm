@@ -92,16 +92,9 @@ deploy:
     ## Application properties file contents
     properties: |-
       ## Properties go here
-      # quarkus.mongodb.connection-string: mongodb://podiyumm-song-mongodb:27017/podiyumm-song?socketTimeoutMS=1000&connectTimeoutMS=1000&serverSelectionTimeoutMS=1000
-      quarkus.mongodb.connection-string: mongodb://podiyumm-song-mongodb:27017/podiyumm-song?authSource=admin&socketTimeoutMS=1000&connectTimeoutMS=1000&serverSelectionTimeoutMS=1000
-      quarkus.mongodb.credentials.auth-mechanism: PLAIN
-      #  to overcome: com.mongodb.MongoCommandException: Command failed with error 13 (Unauthorized): 'not authorized on podiyumm-song to execute com
-      #mand { collMod: "DATABASECHANGELOGLOCK", validator: { $jsonSchema: { bsonType: "object", description: "Database Lock Collection"  "code": 13, "codeName": "Unauthorized"}
-      # for proper solution, see needed permissions: https://docs.mongodb.com/manual/reference/command/collMod/#access-control
-      # quarkus.mongodb.credentials.username: podiyumm-song
-      # quarkus.mongodb.credentials.password: podiyumm-song
-      quarkus.mongodb.credentials.username: root
-      quarkus.mongodb.credentials.password: mongodb
+      quarkus.mongodb.connection-string: mongodb://podiyumm-song-mongodb:27017/podiyumm-song?socketTimeoutMS=1000&connectTimeoutMS=1000&serverSelectionTimeoutMS=1000
+      quarkus.mongodb.credentials.username: podiyumm-song
+      quarkus.mongodb.credentials.password: podiyumm-song
 
   ## Freeform Liveness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
   livenessProbe:
