@@ -7,6 +7,12 @@ Run k8s cluster locally using k3d:
  k3d cluster create podiyumm -p "8123:30000@agent[0]" --agents 1
 ```
 
+Deploy apps:
+```shell
+helm dependencies update ./podiyumm-song
+helm upgrade --install -f ./podiyumm-song/values.yaml podiyumm-song ./podiyumm-song
+```
+
 Deploy Tyk GW:
 ```shell
 #helm repo add bitnami https://charts.bitnami.com/bitnami
