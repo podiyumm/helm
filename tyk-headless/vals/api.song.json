@@ -1,0 +1,25 @@
+{
+  "name": "Song API",
+  "slug": "song-api",
+  "api_id": "1",
+  "org_id": "1",
+  "definition": {
+    "location": "header",
+    "key": "x-api-version"
+  },
+  "version_data": {
+    "not_versioned": true,
+    "versions": {
+      "Default": {
+        "name": "Default",
+        "use_extended_paths": true
+      }
+    }
+  },
+  "proxy": {
+    "listen_path": "/song/",
+    "target_url": "http://podiyumm-song:80/",
+    "strip_listen_path": true
+  },
+  "active": true
+}

@@ -1,0 +1,197 @@
+# Default values for tyk-headless chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: tyk-headless
+
+secrets:
+  APISecret: CHANGEME
+  OrgID: "1"
+  # If you don't want to store plaintext secrets in the Helm value file and would rather provide the k8s Secret externally please populate the value below
+  useSecretName: ""
+
+redis:
+  shardCount: 128
+  addrs:
+    - redis.tyk.svc.cluster.local:6379
+  useSSL: false
+  # If you're using Bitnami Redis chart please input the correct host and password to your installation in the fields below
+  # addrs:
+  #  - tyk-redis-master.tyk.svc.cluster.local:6379
+  # pass: ""
+  # If you are using Redis cluster, enable it here.
+  # enableCluster: false
+  # By default the database index is 0. Setting the database index is not supported with redis cluster. As such, if you have enableCluster: true, then this value should be omitted or explicitly set to 0.
+  storage:
+    database: 0
+
+mongo:
+  enabled: false
+#    mongoURL: mongodb://mongo.tyk.svc.cluster.local:27017/tyk_analytics
+#    #If you're using Bitnami MongoDB chart please input your password below
+#    #mongoURL: mongodb://root:pass@tyk-mongo-mongodb.tyk.svc.cluster.local:27017/tyk-dashboard?authSource=admin
+#    useSSL: false
+
+gateway:
+  kind: DaemonSet
+  replicaCount: 1
+  hostName: tyk-gw.local
+  tls: false
+  containerPort: 8080
+  tags: ""
+  image:
+    repository: docker.tyk.io/tyk-gateway/tyk-gateway
+    tag: v3.1.2
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 30000
+    externalTrafficPolicy: Local
+    annotations: {}
+  control:
+    enabled: false
+    containerPort: 9696
+    port: 9696
+    type: ClusterIP
+    annotations: {}
+  ingress:
+    enabled: false
+    annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+      - tyk-gw.local
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #  cpu: 100m
+    #  memory: 128Mi
+    # requests:
+    #  cpu: 100m
+    #  memory: 128Mi
+  nodeSelector: {}
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      effect: NoSchedule
+  affinity: {}
+  extraEnvs: []
+  conf: |-
+
+# If pump is enabled the Gateway will create and collect analytics data to send to a data store of your choice
+# These can be set up in the pump config. The possible pump configs can be found here: https://github.com/TykTechnologies/tyk-pump#configuration
+pump:
+  enabled: false
+  replicaCount: 1
+  image:
+    repository: docker.tyk.io/tyk-pump/tyk-pump
+    tag: v1.2.0
+    pullPolicy: IfNotPresent
+  annotations: {}
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #  cpu: 100m
+    #  memory: 128Mi
+    # requests:
+    #  cpu: 100m
+    #  memory: 128Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  extraEnvs: []
+  conf: |-
+
+rbac: true
+
+apps:
+  conf:
+    api.song.json:
+      {
+        "name": "Song API",
+        "slug": "song-api",
+        "api_id": "1",
+        "org_id": "1",
+        "definition": {
+          "location": "header",
+          "key": "x-api-version"
+        },
+        "version_data": {
+          "not_versioned": true,
+          "versions": {
+            "Default": {
+              "name": "Default",
+              "use_extended_paths": true
+            }
+          }
+        },
+        "proxy": {
+          "listen_path": "/song/",
+          "target_url": "http://podiyumm-song.default.svc.cluster.local:80/",
+          "strip_listen_path": true
+        },
+        "active": true
+      }
+    api.musician-ui.json:
+      {
+        "name": "Musician UI API",
+        "slug": "musician-api",
+        "api_id": "1",
+        "org_id": "1",
+        "definition": {
+          "location": "header",
+          "key": "x-api-version"
+        },
+        "version_data": {
+          "not_versioned": true,
+          "versions": {
+            "Default": {
+              "name": "Default",
+              "use_extended_paths": true
+            }
+          }
+        },
+        "proxy": {
+          "listen_path": "/musician-ui/",
+          "target_url": "http://podiyumm-musician-ui.default.svc.cluster.local:80/",
+          "strip_listen_path": true
+        },
+        "active": true
+      }
+    api.landing-ui.json:
+      {
+        "name": "Musician UI API",
+        "slug": "musician-api",
+        "api_id": "1",
+        "org_id": "1",
+        "definition": {
+          "location": "header",
+          "key": "x-api-version"
+        },
+        "version_data": {
+          "not_versioned": true,
+          "versions": {
+            "Default": {
+              "name": "Default",
+              "use_extended_paths": true
+            }
+          }
+        },
+        "proxy": {
+          "listen_path": "/landing-ui/",
+          "target_url": "http://podiyumm-landing-ui.default.svc.cluster.local:80/",
+          "strip_listen_path": true
+        },
+        "active": true
+      }

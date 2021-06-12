@@ -1,0 +1,133 @@
+---
+openapi: 3.0.3
+info:
+  title: Generated API
+  version: "1.0"
+paths:
+  /song:
+    get:
+      parameters:
+      - name: page
+        in: query
+        schema:
+          format: int32
+          default: 0
+          type: integer
+      - name: size
+        in: query
+        schema:
+          format: int32
+          default: 20
+          type: integer
+      - name: sort
+        in: query
+        schema:
+          type: array
+      responses:
+        "200":
+          description: OK
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Song'
+      responses:
+        "200":
+          description: OK
+  /song/{id}:
+    get:
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/ObjectId'
+      responses:
+        "200":
+          description: OK
+    put:
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/ObjectId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Song'
+      responses:
+        "200":
+          description: OK
+    delete:
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/ObjectId'
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    ObjectId:
+      type: object
+      properties:
+        counter:
+          format: int32
+          type: integer
+        randomValue1:
+          format: int32
+          type: integer
+        randomValue2:
+          type: integer
+        timestamp:
+          format: int32
+          type: integer
+        date:
+          format: date
+          type: string
+    Song:
+      type: object
+      properties:
+        album:
+          type: string
+        artist:
+          type: string
+        capo:
+          format: int32
+          type: integer
+        composer:
+          type: string
+        copyright:
+          type: string
+        duration:
+          format: int64
+          type: integer
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        key:
+          type: string
+        lyricist:
+          type: string
+        meta:
+          type: string
+        subtitle:
+          type: string
+        tempo:
+          format: int32
+          type: integer
+        text:
+          type: array
+          items:
+            type: string
+        time:
+          format: date-time
+          type: string
+        title:
+          type: string
+        year:
+          type: integer
