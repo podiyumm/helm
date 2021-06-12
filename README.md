@@ -11,6 +11,8 @@ Deploy apps:
 ```shell
 helm dependencies update ./podiyumm-song
 helm upgrade --install -f ./podiyumm-song/values.yaml podiyumm-song ./podiyumm-song
+
+helm upgrade --install -f ./podiyumm-musician-ui/values.yaml podiyumm-musician-ui ./podiyumm-musician-ui
 ```
 
 Deploy Tyk GW:
