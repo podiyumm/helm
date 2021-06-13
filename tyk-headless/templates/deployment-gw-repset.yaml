@@ -181,9 +181,9 @@ spec:
           configMap:
             name: apps-conf-{{ include "tyk-headless.fullname" . }}
             items:
-              {{- range $name := .Values.apps.conf }}
-              - key: $name
-                path: $name
+              {{- range $name, $labelValue := .Values.apps.conf }}
+              - key: {{ $name }}
+                path: {{ $name }}
               {{- end }}
 
 
