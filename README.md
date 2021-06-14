@@ -4,7 +4,8 @@
 
 Run k8s cluster locally using k3d:
 ```shell
- k3d cluster create podiyumm -p "8123:30000@agent[0]" --agents 1
+# k3d cluster create podiyumm -p "8123:30000@agent[0]" --agents 1
+k3d cluster create podiyumm --api-port 6550 -p "8123:80@loadbalancer" --agents 1
 ```
 
 Deploy apps:
