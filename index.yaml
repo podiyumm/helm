@@ -3,6 +3,16 @@ entries:
   podiyumm-landing-ui:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-08-22T20:08:49.455226659Z"
+    description: A Helm chart for Kubernetes
+    digest: cee49345f4a8852b787d8d3f86e84828eb236abd282f3f9d27b4c69ef2e6c466
+    name: podiyumm-landing-ui
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-landing-ui-0.1.1/podiyumm-landing-ui-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-08-22T20:07:06.739873559Z"
     description: A Helm chart for Kubernetes
     digest: 85c6d89e022eff97df5fdc31e1888f4255f592c1ecdd50ae12f4caacbad9a1d3
@@ -14,6 +24,16 @@ entries:
   podiyumm-musician-ui:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-08-22T20:08:49.60348674Z"
+    description: A Helm chart for Kubernetes
+    digest: 8ed0af941f4fdf3b05a7cd21f2dae955aefd13c49e6a818262914cfd4313ed75
+    name: podiyumm-musician-ui
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-musician-ui-0.1.1/podiyumm-musician-ui-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-08-22T20:07:06.955027797Z"
     description: A Helm chart for Kubernetes
     digest: bb4b953be4a3526965d41c783694ee654f27624e50767391dce21d97e95d91b8
@@ -23,6 +43,20 @@ entries:
     - https://github.com/podiyumm/helm/releases/download/podiyumm-musician-ui-0.1.0/podiyumm-musician-ui-0.1.0.tgz
     version: 0.1.0
   podiyumm-song:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-08-22T20:08:49.80483293Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.x.x
+    description: podiyumm-song helm chart
+    digest: 064ffebf788e3a2c2adbae0c6a53b9c0bb6b6cfd32d58d36a1cc037bf2faed7b
+    name: podiyumm-song
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-song-0.1.1/podiyumm-song-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2021-08-22T20:07:07.146334878Z"
@@ -37,4 +71,4 @@ entries:
     urls:
     - https://github.com/podiyumm/helm/releases/download/podiyumm-song-0.1.0/podiyumm-song-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-22T20:07:07.146350178Z"
+generated: "2021-08-22T20:08:49.804845031Z"
