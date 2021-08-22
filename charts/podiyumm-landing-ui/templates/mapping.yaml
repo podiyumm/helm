@@ -1,0 +1,7 @@
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  name:  landing-ui-mapping
+spec:
+  prefix: /landing-ui/
+  service: podiyumm-landing-ui:80
