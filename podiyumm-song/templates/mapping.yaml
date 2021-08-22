@@ -1,7 +1,0 @@
-apiVersion: getambassador.io/v2
-kind:  Mapping
-metadata:
-  name:  musician-song-mapping
-spec:
-  prefix: /song
-  service: podiyumm-song:80
