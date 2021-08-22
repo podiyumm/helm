@@ -26,10 +26,10 @@ jobs:
         with:
           version: v3.4.0
 
+      # https://github.com/helm/chart-releaser-action/issues/74
       - name: Add bitnami helm chart repo
-          run: |
-            # https://github.com/helm/chart-releaser-action/issues/74
-            helm repo add bitnami https://charts.bitnami.com/bitnami
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
