@@ -71,4 +71,15 @@ entries:
     urls:
     - https://github.com/podiyumm/helm/releases/download/podiyumm-song-0.1.0/podiyumm-song-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-22T20:08:49.804845031Z"
+  podiyumm-ws:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-08-23T05:33:43.486048705Z"
+    description: A Helm chart for Kubernetes
+    digest: 18d0fac49cb9fb27e784a5a4837b2e36e87839027d38b760252b4f596d73ff1d
+    name: podiyumm-ws
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-ws-0.1.0/podiyumm-ws-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-08-23T05:33:43.486063507Z"
