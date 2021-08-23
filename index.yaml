@@ -45,6 +45,20 @@ entries:
   podiyumm-song:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-08-23T05:45:09.219352101Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.x.x
+    description: podiyumm-song helm chart
+    digest: e49c0ef28afb1c34790d108661e2979e4e040b12ab3ba0ab2cb47cbffe2c0c7b
+    name: podiyumm-song
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-song-0.1.2/podiyumm-song-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-08-22T20:08:49.80483293Z"
     dependencies:
     - name: mongodb
@@ -82,4 +96,4 @@ entries:
     urls:
     - https://github.com/podiyumm/helm/releases/download/podiyumm-ws-0.1.0/podiyumm-ws-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-23T05:33:43.486063507Z"
+generated: "2021-08-23T05:45:09.219383701Z"
