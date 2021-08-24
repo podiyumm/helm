@@ -88,6 +88,20 @@ entries:
   podiyumm-ws:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-08-24T12:34:44.711768314Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.x.x
+    description: A Helm chart for Kubernetes
+    digest: ce51f4c016cc9bdad8e8b30018ef3af4c03ef6f7bc535de64d3c9e07a081abbd
+    name: podiyumm-ws
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-ws-0.2.0/podiyumm-ws-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-08-23T05:33:43.486048705Z"
     description: A Helm chart for Kubernetes
     digest: 18d0fac49cb9fb27e784a5a4837b2e36e87839027d38b760252b4f596d73ff1d
@@ -96,4 +110,4 @@ entries:
     urls:
     - https://github.com/podiyumm/helm/releases/download/podiyumm-ws-0.1.0/podiyumm-ws-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-23T05:45:09.219383701Z"
+generated: "2021-08-24T12:34:44.712717158Z"
