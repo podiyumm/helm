@@ -1,9 +1,9 @@
 apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
-  name:  musician-ui-mapping
+  name:  ws-mapping
 spec:
-  prefix: /musician-ui/
+  prefix: /podiyumm-ws/
   service: podiyumm-ws:80
   allow_upgrade:
     - websocket

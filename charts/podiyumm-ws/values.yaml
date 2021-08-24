@@ -77,6 +77,16 @@ autoscaling:
   targetMemoryUtilizationPercentage: 80
 
 deploy:
+  env:
+    ## Determines if application properties should be created in a configmap and mounted to the Quarkus container
+    enabled: true
+    ## Application properties file contents
+    properties: |-
+      "WEB_SOCKET_PORT": "3000"
+      "REDIS_HOST": "podiyumm-ws-redis-master"
+      "REDIS_PORT": "6379"
+      "REDIS_PWD": "podiyumm"
+
   ## Freeform Liveness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
   livenessProbe:
     tcpSocket:
@@ -85,7 +95,6 @@ deploy:
     periodSeconds: 5
   ## If you don't want a livenessProbe, override like this in your values file
   # livenessProbe: ''
-
 
   ## Freeform Readiness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
   readinessProbe:
@@ -104,3 +113,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# dependent one
+redis:
+  architecture: standalone
+  auth:
+    password: podiyumm

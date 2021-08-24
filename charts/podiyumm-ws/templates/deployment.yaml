@@ -47,6 +47,11 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          envFrom:
+            {{- if .Values.deploy.env.enabled }}
+            - configMapRef:
+                name: {{ include "podiyumm-ws.name" . }}
+            {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
