@@ -6,9 +6,10 @@ replicaCount: 1
 
 image:
   repository: podiyumm/podiyumm-ws
+#  repository: localhost:5000/podiyumm-ws
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.0
+  tag: 0.1.1
 
 imagePullSecrets: []
 nameOverride: ""
@@ -90,7 +91,7 @@ deploy:
   ## Freeform Liveness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
   livenessProbe:
     tcpSocket:
-      port: 80
+      port: 3000
     initialDelaySeconds: 5
     periodSeconds: 5
   ## If you don't want a livenessProbe, override like this in your values file
@@ -99,7 +100,7 @@ deploy:
   ## Freeform Readiness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
   readinessProbe:
     tcpSocket:
-      port: 80
+      port: 3000
     initialDelaySeconds: 5
     periodSeconds: 5
   ## If you don't want a readinessProbe, override like this in your values file

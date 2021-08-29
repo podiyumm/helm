@@ -6,4 +6,4 @@ spec:
   prefix: /podiyumm-ws/
   service: podiyumm-ws:80
   allow_upgrade:
-    - websocket
+  - websocket
