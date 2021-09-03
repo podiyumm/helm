@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "podiyumm-landing-ui.fullname" . }}
+  labels:
+    {{- include "podiyumm-landing-ui.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "podiyumm-landing-ui.selectorLabels" . | nindent 4 }}
