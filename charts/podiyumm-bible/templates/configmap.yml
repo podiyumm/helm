@@ -1,0 +1,10 @@
+{{- if .Values.deploy.env.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "podiyumm-bible.name" . }}
+  labels:
+    {{- include "podiyumm-bible.labels" . | nindent 4 }}
+data:
+  {{- tpl .Values.deploy.env.data . | nindent 2 }}
+{{- end }}
