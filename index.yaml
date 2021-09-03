@@ -1,5 +1,20 @@
 apiVersion: v1
 entries:
+  podiyumm-bible:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-09-03T23:11:37.535026391Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.x.x
+    description: podiyumm-bible helm chart
+    digest: fc2a27dd9e04305de47746915054b6d3387ce98e53516feaa112e0082c65fb31
+    name: podiyumm-bible
+    type: application
+    urls:
+    - https://github.com/podiyumm/helm/releases/download/podiyumm-bible-0.1.0/podiyumm-bible-0.1.0.tgz
+    version: 0.1.0
   podiyumm-landing-ui:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -158,4 +173,4 @@ entries:
     urls:
     - https://github.com/podiyumm/helm/releases/download/podiyumm-ws-0.1.0/podiyumm-ws-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-03T23:10:29.613768273Z"
+generated: "2021-09-03T23:11:37.535057791Z"
