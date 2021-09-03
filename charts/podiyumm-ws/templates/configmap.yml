@@ -6,5 +6,5 @@ metadata:
   labels:
     {{- include "podiyumm-ws.labels" . | nindent 4 }}
 data:
-    {{- tpl .Values.deploy.env.properties . | nindent 2 }}
+    {{- tpl .Values.deploy.env.data . | nindent 2 }}
 {{- end }}

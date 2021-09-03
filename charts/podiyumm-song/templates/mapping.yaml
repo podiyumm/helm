@@ -1,7 +1,7 @@
 apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
-  name:  song-mapping
+  name:  "{{ .Chart.Name }}-mapping"
 spec:
   prefix: /song/
-  service: podiyumm-song:80
+  service: "{{ .Chart.Name }}:80"

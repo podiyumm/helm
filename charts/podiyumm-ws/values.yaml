@@ -79,10 +79,10 @@ autoscaling:
 
 deploy:
   env:
-    ## Determines if application properties should be created in a configmap and mounted to the Quarkus container
+    ## Determines if configmap holding env vars should be created and mounted deployment
     enabled: true
-    ## Application properties file contents
-    properties: |-
+    ## Env vars
+    data: |-
       "WEB_SOCKET_PORT": "3000"
       "REDIS_HOST": "podiyumm-ws-redis-master"
       "REDIS_PORT": "6379"

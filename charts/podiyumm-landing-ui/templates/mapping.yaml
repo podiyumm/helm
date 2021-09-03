@@ -1,7 +1,7 @@
 apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
-  name:  landing-ui-mapping
+  name:  "{{ .Chart.Name }}=mapping"
 spec:
   prefix: /landing-ui/
-  service: podiyumm-landing-ui:80
+  service: "{{ .Chart.Name }}:80"

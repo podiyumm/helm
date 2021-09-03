@@ -1,9 +1,9 @@
 apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
-  name:  ws-mapping
+  name:  "{{ .Chart.Name }}-mapping"
 spec:
-  prefix: /podiyumm-ws/
-  service: podiyumm-ws:80
+  prefix: /ws/
+  service: "{{ .Chart.Name }}:80"
   allow_upgrade:
   - websocket
